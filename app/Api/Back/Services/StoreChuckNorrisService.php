@@ -3,7 +3,6 @@
 namespace App\Api\Back\Services;
 
 use App\Api\Back\Entities\ChuckNorris;
-use App\Api\Back\Request\StoreChuckNorrisRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
