@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     /* Chuck Norris Posts */
     Route::group(['prefix' => 'chucknorris'],function () {
         Route::get('index', [ChuckNorrisController::class, 'index']);
+        Route::post('store', [ChuckNorrisController::class, 'store']);
     });
 
 });
