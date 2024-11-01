@@ -3,10 +3,12 @@
 namespace App\Api\Auth\Resources;
 
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource
+class UserResource extends JsonResource
 {
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
         return [
             'id' => $this->{User::ID},

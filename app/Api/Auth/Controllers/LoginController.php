@@ -3,12 +3,15 @@
 namespace App\Api\Auth\Controllers;
 
 use App\Api\Auth\Resources\UserResource;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\Sanctum;
 
-class LoginController
+class LoginController extends Controller
 {
     public function login(Request $request): JsonResponse
     {
@@ -26,9 +29,21 @@ class LoginController
         return response()->json(array_merge($token));
     }
 
-
-    public function me(Request $request): JsonResponse
+    public function logout(Request $request): Response
     {
-        return response()->json($request->user());
+
+        if ($token = $request->bearerToken()) {
+            $model = Sanctum::$personalAccessTokenModel;
+            $accessToken = $model::findToken($token);
+            $accessToken->delete();
+        }
+
+        return response()->noContent();
+    }
+
+
+    public function me(Request $request): UserResource
+    {
+        return new UserResource($request->user());
     }
 }
