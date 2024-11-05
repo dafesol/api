@@ -2,6 +2,7 @@
 
 namespace App\Api\Auth\Controllers;
 
+use App\Api\Auth\Requests\LoginRequest;
 use App\Api\Auth\Resources\UserResource;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -13,7 +14,7 @@ use Laravel\Sanctum\Sanctum;
 
 class LoginController extends Controller
 {
-    public function login(Request $request): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
         $credentials = request([User::EMAIL, User::PASSWORD]);
         if (!Auth::attempt($credentials)) {
