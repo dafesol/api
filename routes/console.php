@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Schedule;
 
-Schedule::command('sync:etl')->everyFourHours();
+Schedule::command('sync:etl')->everyFiveMinutes();
